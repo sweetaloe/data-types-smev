@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2019 rel. 3 sp1 (http://www.altova.com) by  (RT LABS, AO) -->
+
+<!-- должно быть какое-то targenNamespace и xmlns:tns в душе не ебу где брать их -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" elementFormDefault="qualified">
+
+
+
+
+	<!-- Используется для номера заявки -->
+	<xsd:simpleType name="stringNN-20">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- +- Общие строковые типы-->
+
+	<xsd:simpleType name="stringNN-50">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="stringNN-250">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="250"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="stringNN-500">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="500"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="string-2048">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="2048"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<!-- Персональная информация пользователя-->
+
+	<xsd:simpleType name="GenderType">
+		<xsd:annotation>
+			<xsd:documentation>Пол</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="М"/>
+			<xsd:enumeration value="Ж"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="PersDataType">
+		<xsd:annotation>
+			<xsd:documentation>
+                Персональная информация о гражданине
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="lastName" type="soc:stringNN-50"/>
+			<xsd:element name="firstName" type="soc:stringNN-50"/>
+			<xsd:element name="middleName" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="birthDate" type="xsd:date"/>
+			<xsd:element name="gender" minOccurs="0" type="">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="М"/>
+						<xsd:enumeration value="Ж"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Snils" type="soc:SNILSType" minOccurs="0"/>
+			<xsd:element name="phone" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="Email" type="soc:EmailAddressType" minOccurs="0"/>
+			<xsd:element name="Info" type="soc:string-2048" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+	<xsd:complexType name="AddressType">
+		<xsd:annotation>
+			<xsd:documentation>
+                Адрес
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:choice minOccurs="1" maxOccurs="1">
+				<xsd:element name="townKladrCode" type="soc:stringNN-50" minOccurs="0"/>
+				<xsd:element name="streetKladrCode" type="soc:stringNN-50" minOccurs="0"/>
+				<xsd:element name="fiasHouseCode" type="soc:stringNN-50" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="index" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="town" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="street" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="house" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="building" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="apartment" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="strAddress">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="300"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Контактная информация пользователя-->
+	<xsd:simpleType name="EmailAddressType">
+		<xsd:annotation>
+			<xsd:documentation>Адрес электронной почты</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+			<xsd:pattern value="[0-9a-zA-Z_.\-]{2,50}[@]{1}[0-9a-zA-Z_./-]{2,50}[.]{1}[a-zA-Z]{2,5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PhoneAddressType">
+		<xsd:annotation>
+			<xsd:documentation>Телефонный номер</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="256"/>
+			<xsd:pattern value="[0-9]{11}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Документы пользователя-->
+	<xsd:simpleType name="SNILSType">
+		<xsd:annotation>
+			<xsd:documentation>СНИЛС. Взято из описания ПФР </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{3}-\d{3}-\d{3} \d{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Номер заявки в лк, вроде как есть во всех ВС что я видела -->
+	<xsd:complexType name="orderIdType">
+		<xsd:sequence>
+			<xsd:annotation>
+				<xsd:documentation>
+                    Номер заявки в ЛК ЕПГУ
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:element name="pguId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+</xsd:schema>
