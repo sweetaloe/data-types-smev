@@ -61,7 +61,7 @@ type - тип элемента -->
 			<xsd:pattern value="[0-9]{2}[.][0-9]{2}[.][0-9]{4}"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-	
+
 	<!-- Персональная информация пользователя-->
 
 	<xsd:simpleType name="gender">
@@ -225,7 +225,44 @@ type - тип элемента -->
 		</xsd:restriction>
 	</xsd:simpleType>
 
-
+	<!--Получение выплат-->
+	<xsd:complexType name="CreditBlockType">
+		<xsd:annotation>
+			<xsd:documentation>Укажите банковские реквизиты для перечисления выплаты</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="CheckboxNameAndBIKOrgan" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>Ввести реквизиты кредитной организации вручную</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BIKBankName" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>БИК или наименование банка получателя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BankName" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Наименование банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bankBIK" type="tns:string-9" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>БИК</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="acountBank" type="tns:string-20" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Корреспондентский счет банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AccountNumber" type="tns:string-20" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Номер счета заявителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
 	<!--Возможно рабочий варик вложений-->
 	<xsd:complexType name="DocumentsType">
 		<xsd:annotation>
