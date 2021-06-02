@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2019 rel. 3 sp1 (http://www.altova.com) by  (RT LABS, AO) -->
 
-<!-- должно быть какое-то targenNamespace и xmlns:tns в душе не ебу где брать их -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<!-- xsd - префикс, связанный с пространством имён "http://www.w3.org/2001/XMLSchema", можно выбрать и другое имя типа xs.
+element - объявление элементов схемы
+complexType - задаёт сложный тип т.е. может содежать в себе подэлементы
+simpleType - простой тип
+sequence - требует, чтобы подэлементы шли в строго указанной последовательности (сначала фамилия, потом имя, потом отчество, например)
+type - тип элемента -->
+<!-- targetNamespace штука необязательная, пока что она тут просто есть
+в качестве tns подцеплён схема от смева, надо ли оно нам хз-->
+<!-- maxOccurs и minOccurs определяют максимальное и минимальное вхождение элемента в xml для которого схема и пилится, дефолтное значение 1, unbounded — означает, что число вхождений не ограничено-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="ekat-services"
 	xmlns:tns="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" elementFormDefault="qualified">
 
 
@@ -17,7 +24,7 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 
-	<!-- +- Общие строковые типы-->
+	<!-- +- Общие строковые типы? нужны ли они вообще-->
 
 	<xsd:simpleType name="stringNN-50">
 		<xsd:restriction base="xsd:normalizedString">
@@ -60,29 +67,28 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 
-	<xsd:complexType name="PersDataType">
+
+	<xsd:complexType name="PersonDataType">
 		<xsd:annotation>
 			<xsd:documentation>
                 Персональная информация о гражданине
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="lastName" type="soc:stringNN-50"/>
-			<xsd:element name="firstName" type="soc:stringNN-50"/>
-			<xsd:element name="middleName" type="soc:stringNN-50" minOccurs="0"/>
-			<xsd:element name="birthDate" type="xsd:date"/>
-			<xsd:element name="gender" minOccurs="0" type="">
-				<xsd:simpleType>
-					<xsd:restriction base="xsd:string">
-						<xsd:enumeration value="М"/>
-						<xsd:enumeration value="Ж"/>
-					</xsd:restriction>
-				</xsd:simpleType>
-			</xsd:element>
-			<xsd:element name="Snils" type="soc:SNILSType" minOccurs="0"/>
-			<xsd:element name="phone" type="soc:stringNN-50" minOccurs="0"/>
-			<xsd:element name="Email" type="soc:EmailAddressType" minOccurs="0"/>
-			<xsd:element name="Info" type="soc:string-2048" minOccurs="0"/>
+			<!--главная информация-->
+			<xsd:element name="lastName" type="stringNN-50"/>
+			<xsd:element name="firstName" type="stringNN-50"/>
+			<xsd:element name="middleName" type="stringNN-50" minOccurs="0"/>
+			<xsd:element name="birthDate" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="gender" type="GenderType" minOccurs="0"/>
+			<!--Контактная информация-->
+			<xsd:element name="phone" type="PhoneType" minOccurs="0"/>
+			<xsd:element name="email" type="EmailType" minOccurs="0"/>
+			<xsd:element name="info" type="string-2048" minOccurs="0"/>
+			<!--Документы-->
+			<xsd:element name="snils" type="SNILSType" minOccurs="0"/>
+			<xsd:element name="inn" type="INNType" minOccurs="0"/>
+			<xsd:element name="identification" type="IdentificationType" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 
@@ -96,16 +102,16 @@
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:choice minOccurs="1" maxOccurs="1">
-				<xsd:element name="townKladrCode" type="soc:stringNN-50" minOccurs="0"/>
-				<xsd:element name="streetKladrCode" type="soc:stringNN-50" minOccurs="0"/>
-				<xsd:element name="fiasHouseCode" type="soc:stringNN-50" minOccurs="0"/>
+				<xsd:element name="townKladrCode" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="streetKladrCode" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="fiasHouseCode" type="stringNN-50" minOccurs="0"/>
 			</xsd:choice>
-			<xsd:element name="index" type="soc:stringNN-50" minOccurs="0"/>
-			<xsd:element name="town" type="soc:stringNN-50" minOccurs="0"/>
-			<xsd:element name="street" type="soc:stringNN-50" minOccurs="0"/>
-			<xsd:element name="house" type="soc:stringNN-50" minOccurs="0"/>
-			<xsd:element name="building" type="soc:stringNN-50" minOccurs="0"/>
-			<xsd:element name="apartment" type="soc:stringNN-50" minOccurs="0"/>
+			<xsd:element name="index" type="stringNN-50" minOccurs="0"/>
+			<xsd:element name="town" type="stringNN-50" minOccurs="0"/>
+			<xsd:element name="street" type="stringNN-50" minOccurs="0"/>
+			<xsd:element name="house" type="stringNN-50" minOccurs="0"/>
+			<xsd:element name="building" type="stringNN-50" minOccurs="0"/>
+			<xsd:element name="apartment" type="stringNN-50" minOccurs="0"/>
 			<xsd:element name="strAddress">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
@@ -127,7 +133,7 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 
-	<xsd:simpleType name="PhoneAddressType">
+	<xsd:simpleType name="PhoneType">
 		<xsd:annotation>
 			<xsd:documentation>Телефонный номер</xsd:documentation>
 		</xsd:annotation>
@@ -151,11 +157,37 @@
 
 
 
+	<!-- Тестовые куски какой-то там услуги-->
+	<xsd:element name="applicationNumber">
+		<xsd:simpleType>
+			<xsd:annotation>
+				<xsd:documentation>
+                    Номер заявления в какой-то там услуге
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:string">
+				<xsd:pattern value="[0-9]"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
 
-
-
-
-
+	<xsd:simpleType name="FieldRadioType">
+		<xsd:annotation>
+			<xsd:documentation>Тип заявлния</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:byte">
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:documentation>Документы к заявлению о зачислении в образовательное учреждение</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:documentation>Документы на комиссию для детей младше 6,6 лет или старше 8 лет (при необходимости)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
 
 	<!-- Номер заявки в лк, вроде как есть во всех ВС что я видела -->
 	<xsd:complexType name="orderIdType">
