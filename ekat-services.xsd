@@ -10,8 +10,119 @@ type - тип элемента -->
 в качестве tns подцеплён схема от смева, надо ли оно нам хз-->
 <!-- maxOccurs и minOccurs определяют максимальное и минимальное вхождение элемента в xml для которого схема и пилится, дефолтное значение 1, unbounded — означает, что число вхождений не ограничено-->
 
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="ekat-services"
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="ekat-services/universal/1.0.3"
 	xmlns:tns="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" elementFormDefault="qualified">
+
+
+	<xsd:element name="request" type="tns:requestType">
+		<xsd:annotation>
+			<xsd:documentation>Корневой элемент запроса</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:complexType name="requestType">
+		<xsd:annotation>
+			<xsd:documentation>Root request element</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Service" type="FormStepServiceType">
+				<xsd:annotation>
+					<xsd:documentation>Служебная информация</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Goal" type="tns:GoalType">
+				<xsd:annotation>
+					<xsd:documentation>Цель обращения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VariantChoice" type="tns:VariantChoiceType">
+				<xsd:annotation>
+					<xsd:documentation>Вариант предоставления услуги</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DelegateInfo" type="tns:DelegateInfoType">
+				<xsd:annotation>
+					<xsd:documentation>Категория заявителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RecipientPersonalData" type="RecipientPersonalDataType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Данные о физическом лице</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DelegatePersonalData" type="DelegatePersonalDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Данные о физическом лице при заполнении сведений представителем</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="Documents" type="tns:DocumentsType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Сведения о вложениях</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="oktmo" type="tns:oktmo" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="FormStepServiceType">
+		<xsd:annotation>
+			<xsd:documentation>Служебная информация</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="currentDate" type="tns:date">
+				<xsd:annotation>
+					<xsd:documentation>Текущая дата</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="userType" type="tns:userTypeType">
+				<xsd:annotation>
+					<xsd:documentation>Тип текущего пользователя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="orderId" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>Номер заявления</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="orderStatusCode" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Код режима внесения данных</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="orgBrief" type="xsd:boolean" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>ЮЛ и ИП: Является ли генеральным директором</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TargetId" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Код цели обращения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TargetName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Наименование цели обращения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DepartmentId" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Код ведомства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DepartmentName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Наименование ведомства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="okato" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>ОКАТО выбранного региона</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
 
 
 
@@ -126,12 +237,12 @@ type - тип элемента -->
 					<xsd:documentation>Гражданство</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Phone" type="xsd:string">
+			<xsd:element name="Phone" type="PhoneType">
 				<xsd:annotation>
 					<xsd:documentation>Телефон</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Email" type="xsd:string">
+			<xsd:element name="Email" type="EmailType">
 				<xsd:annotation>
 					<xsd:documentation>Электронная почта</xsd:documentation>
 				</xsd:annotation>
@@ -158,6 +269,65 @@ type - тип элемента -->
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
+
+
+
+	<xsd:element name="IsRepresentative" type="CheckIsRepresentative" minOccurs="0" maxOccurs="1">
+		<xsd:annotation>
+			<xsd:documentation>Заявление подаётся представителем?</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:simpleType name="CheckIsRepresentative">
+		<xsd:restriction base="xsd:byte">
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:documentation>Завление подаётся заявителем</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:documentation>Заявление подаётся представителем</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="RepresentativePersonalDataType">
+		<xsd:annotation>
+			<xsd:documentation>Данные о представителе заявителя</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="fullfio" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>ФИО</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lastname" type="fio">
+				<xsd:annotation>
+					<xsd:documentation>Фамилия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="firstname" type="fio">
+				<xsd:annotation>
+					<xsd:documentation>Имя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="middlename" type="fio" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Отчество</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Phone" type="PhoneType">
+				<xsd:annotation>
+					<xsd:documentation>Телефон</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+
+		</xsd:sequence>
+	</xsd:complexType>
+
 
 
 
@@ -192,7 +362,7 @@ type - тип элемента -->
 	</xsd:complexType>
 
 	<!-- Контактная информация пользователя-->
-	<xsd:simpleType name="EmailAddressType">
+	<xsd:simpleType name="EmailType">
 		<xsd:annotation>
 			<xsd:documentation>Адрес электронной почты</xsd:documentation>
 		</xsd:annotation>
@@ -229,6 +399,32 @@ type - тип элемента -->
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:element>
+
+
+
+
+	<!--Коллекция радио-кнопок-->
+
+	<!--Предоставление компенсации расходов, связанных с установкой в муниципальных жилых помещениях приборов учета используемых воды и электрической энергии-->
+	<xsd:simpleType name="KP_OA_03Type">
+		<xsd:restriction base="xsd:byte">
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:documentation>Родитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:documentation>Опекун</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="3">
+				<xsd:annotation>
+					<xsd:documentation>Попечитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
 
 	<xsd:simpleType name="FieldRadioType">
 		<xsd:annotation>
@@ -359,12 +555,16 @@ type - тип элемента -->
 			<xsd:documentation>Сведения о вложениях</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
+			<xsd:element name="PowerOfAppointment" type="tns:DocInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Копия доверенности представиеля</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
 			<xsd:element name="PremisesIeaseAgreement" type="tns:DocInfoType" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation>Договор найма (поднайма) жилого помещения</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-
 		</xsd:sequence>
 	</xsd:complexType>
 
