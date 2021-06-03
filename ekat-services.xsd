@@ -80,29 +80,86 @@ type - тип элемента -->
 	</xsd:simpleType>
 
 
-	<xsd:complexType name="PersonDataType">
+
+	<xsd:complexType name="RecipientPersonalDataType">
 		<xsd:annotation>
-			<xsd:documentation>
-                Персональная информация о гражданине
-			</xsd:documentation>
+			<xsd:documentation>Данные о физическом лице</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<!--главная информация-->
-			<xsd:element name="lastName" type="stringNN-50"/>
-			<xsd:element name="firstName" type="stringNN-50"/>
-			<xsd:element name="middleName" type="stringNN-50" minOccurs="0"/>
-			<xsd:element name="birthDate" type="xsd:date" minOccurs="0"/>
-			<xsd:element name="gender" type="GenderType" minOccurs="0"/>
-			<!--Контактная информация-->
-			<xsd:element name="phone" type="PhoneType" minOccurs="0"/>
-			<xsd:element name="email" type="EmailType" minOccurs="0"/>
-			<xsd:element name="info" type="string-2048" minOccurs="0"/>
-			<!--Документы-->
-			<xsd:element name="snils" type="SNILSType" minOccurs="0"/>
-			<xsd:element name="inn" type="INNType" minOccurs="0"/>
-			<xsd:element name="identification" type="IdentificationType" minOccurs="0"/>
+			<xsd:element name="fullfio" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>ФИО</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lastname" type="fio">
+				<xsd:annotation>
+					<xsd:documentation>Фамилия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="firstname" type="fio">
+				<xsd:annotation>
+					<xsd:documentation>Имя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="middlename" type="fio" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Отчество</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="snils" type="snils" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>СНИЛС</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="gender" type="gender" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Пол</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dateBirth" type="date" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Дата рождения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="citizenship" type="xsd:string" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Гражданство</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Phone" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Телефон</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Email" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Электронная почта</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="regAddress" type="AddressType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Адрес регистрации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocumentPersonal" type="tns:DocumentPersonalType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Данные Документа удостоверяющего личность</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ApplicantRightRecipient" type="tns:ApplicantRightRecipientType">
+				<xsd:annotation>
+					<xsd:documentation>Заявитель имеет право  на льготы, меры социальной поддержки и компенсацию по оплате жилого помещения и коммунальных услуг?</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ApplicantEligibilityRecipientContainer" type="tns:ApplicantEligibilityRecipientContainerType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Реквизиты документа, подтверждающего право на льготы, меры социальной поддержки и компенсации по оплате жилого помещения и коммунальных услуг</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
+
+
 
 
 
@@ -225,6 +282,37 @@ type - тип элемента -->
 		</xsd:restriction>
 	</xsd:simpleType>
 
+	<xsd:complexType name="DocumentBlockType">
+		<xsd:annotation>
+			<xsd:documentation>Реквизиты документа, удостоверяющего личность</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="DocName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Наименование документа, удостоверяющего личность</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocSeries" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Серия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocNumber" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocDate" type="tns:date">
+				<xsd:annotation>
+					<xsd:documentation>Дата выдачи</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+
 	<!--Получение выплат-->
 	<xsd:complexType name="CreditBlockType">
 		<xsd:annotation>
@@ -263,6 +351,8 @@ type - тип элемента -->
 			</xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
+
+
 	<!--Возможно рабочий варик вложений-->
 	<xsd:complexType name="DocumentsType">
 		<xsd:annotation>
