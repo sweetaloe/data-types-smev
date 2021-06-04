@@ -30,39 +30,109 @@ type - тип элемента -->
 					<xsd:documentation>Служебная информация</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Goal" type="tns:GoalType">
+			<xsd:element name="Goal" type="xsd:string">
 				<xsd:annotation>
 					<xsd:documentation>Цель обращения</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="VariantChoice" type="tns:VariantChoiceType">
+			<xsd:element name="ServiceResult" type="RB_SERVICE_RESULT_TYPE">
 				<xsd:annotation>
-					<xsd:documentation>Вариант предоставления услуги</xsd:documentation>
+					<xsd:documentation>Способ получения результата услуги</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="DelegateInfo" type="tns:DelegateInfoType">
+			<xsd:element name="PaymentReceipt" type="RB_PAYMENT_RECEIPT_TYPE">
 				<xsd:annotation>
-					<xsd:documentation>Категория заявителя</xsd:documentation>
+					<xsd:documentation>Способ предоставления квитанции об оплате</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CreditBlock" type="CreditBlockType">
+				<xsd:annotation>
+					<xsd:documentation>Банковские реквизиты</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RecipientCategoryInfo" type="RecipientCategoryInfoType">
+				<xsd:annotation>
+					<xsd:documentation>Категория заявителя - заявитель\представитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RecipientTypeData" type="RecipientTypeDataType">
+				<xsd:annotation>
+					<xsd:documentation>Тип заявителя</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="RecipientPersonalData" type="RecipientPersonalDataType" minOccurs="1" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>Данные о физическом лице</xsd:documentation>
+					<xsd:documentation>Данные о заявителе</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="DelegatePersonalData" type="DelegatePersonalDataType" minOccurs="0" maxOccurs="1">
+			<xsd:element name="RepresentativePersonalData" type="RepresentativePersonalDataType" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xsd:documentation>Данные о физическом лице при заполнении сведений представителем</xsd:documentation>
+					<xsd:documentation>Данные о представителе</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			
-			<xsd:element name="Documents" type="tns:DocumentsType" minOccurs="0" maxOccurs="1">
+			<!--Услуга: Предоставление компенсации расходов, связанных с установкой в муниципальных жилых помещениях приборов учета используемых воды и электрической энергии-->
+			<xsd:element name="MeteringDevicesData" type="MeteringDevicesDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Данные о приборах учёта</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Услуга: Выдача документов (выписки из домовой книги, карточки учета собственника жилого помещения, справок и иных документов) в сфере жилищно-коммунального хозяйства-->
+			<xsd:element name="HouseDocumentsRequestData" type="HouseDocumentsRequestDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Данные о жилом помещении для выдачи документов</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Услуга: Выдача градостроительных планов земельных участков-->
+			<xsd:element name="LandPlotData" type="LandPlotDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Сведения о земельном участке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!--Услуга: Выдача дубликатов разрешений на строительство и ввод в эксплуатацию объектов капитального строительства-->
+			<xsd:element name="DuplicatePermissionsRequestDetailsData" type="DuplicatePermissionsRequestDetailsDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Детали запроса на получение дубликатов разрешений</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!--Услуга: Выдача разрешений на строительство (реконструкцию), продление (прекращение) действия разрешений на строительство (реконструкцию), внесение изменений в разрешения на строительство (реконструкцию) объектов капитального строительства-->
+			<xsd:element name="IssuancePermitsDetailsData" type="IssuancePermitsDetailsDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Детали запроса на получение дубликатов разрешений</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!--Услуга: Предоставление сведений из информационной системы обеспечения градостроительной деятельности-->
+			<xsd:element name="DetailsDocumentsRequestData" type="DetailsDocumentsRequestDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Детали запроса на получение сведений из информационной системы обеспечения градостроительной деятельности</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!--Услуга: Согласование местоположения границ земельных участков, являющихся смежными по отношению к земельным участкам, находящимся в муниципальной собственности или в государственной собственности до ее разграничения-->
+			<!-- И услуга: Согласование местоположения границ земельных участков, находящихся в муниципальной собственности или в государственной собственности до ее разграничения-->
+			<xsd:element name="CoordinationLocationLandBoundariesData" type="CoordinationLocationLandBoundariesDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Детали о запросе на cогласование местоположения границ земельных участков</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!--Услуга: Прием в собственность муниципального образования «город Екатеринбург» имущества, находящегося в частной собственности-->
+
+			<xsd:element name="PrivatePropertyData" type="PrivatePropertyDataType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Детали о запросе на прием в собственность имущества, находящегося в частной собственности</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="Documents" type="DocumentsType" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
 					<xsd:documentation>Сведения о вложениях</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
-		<xsd:attribute name="oktmo" type="tns:oktmo" use="required"/>
+		<xsd:attribute name="OKTMODataType" type="tns:OKTMODataType" use="required"/>
 	</xsd:complexType>
 
 	<xsd:complexType name="FormStepServiceType">
@@ -194,456 +264,1887 @@ type - тип элемента -->
 
 	<xsd:complexType name="RecipientPersonalDataType">
 		<xsd:annotation>
-			<xsd:documentation>Данные о физическом лице</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="fullfio" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>ФИО</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="lastname" type="fio">
-				<xsd:annotation>
-					<xsd:documentation>Фамилия</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="firstname" type="fio">
-				<xsd:annotation>
-					<xsd:documentation>Имя</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="middlename" type="fio" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Отчество</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="snils" type="snils" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>СНИЛС</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="gender" type="gender" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Пол</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="dateBirth" type="date" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Дата рождения</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="citizenship" type="xsd:string" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Гражданство</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="Phone" type="PhoneType">
-				<xsd:annotation>
-					<xsd:documentation>Телефон</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="Email" type="EmailType">
-				<xsd:annotation>
-					<xsd:documentation>Электронная почта</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="regAddress" type="AddressType" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Адрес регистрации</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="DocumentPersonal" type="tns:DocumentPersonalType" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Данные Документа удостоверяющего личность</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="ApplicantRightRecipient" type="tns:ApplicantRightRecipientType">
-				<xsd:annotation>
-					<xsd:documentation>Заявитель имеет право  на льготы, меры социальной поддержки и компенсацию по оплате жилого помещения и коммунальных услуг?</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="ApplicantEligibilityRecipientContainer" type="tns:ApplicantEligibilityRecipientContainerType" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Реквизиты документа, подтверждающего право на льготы, меры социальной поддержки и компенсации по оплате жилого помещения и коммунальных услуг</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-
-
-
-	<xsd:element name="IsRepresentative" type="CheckIsRepresentative" minOccurs="0" maxOccurs="1">
-		<xsd:annotation>
-			<xsd:documentation>Заявление подаётся представителем?</xsd:documentation>
-		</xsd:annotation>
-	</xsd:element>
-
-	<xsd:simpleType name="CheckIsRepresentative">
-		<xsd:restriction base="xsd:byte">
-			<xsd:enumeration value="1">
-				<xsd:annotation>
-					<xsd:documentation>Завление подаётся заявителем</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="2">
-				<xsd:annotation>
-					<xsd:documentation>Заявление подаётся представителем</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<xsd:complexType name="RepresentativePersonalDataType">
-		<xsd:annotation>
-			<xsd:documentation>Данные о представителе заявителя</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="fullfio" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>ФИО</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="lastname" type="fio">
-				<xsd:annotation>
-					<xsd:documentation>Фамилия</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="firstname" type="fio">
-				<xsd:annotation>
-					<xsd:documentation>Имя</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="middlename" type="fio" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Отчество</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="Phone" type="PhoneType">
-				<xsd:annotation>
-					<xsd:documentation>Телефон</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-
-
-		</xsd:sequence>
-	</xsd:complexType>
-
-
-
-
-
-
-	<xsd:complexType name="AddressType">
-		<xsd:annotation>
-			<xsd:documentation>
-                Адрес
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:choice minOccurs="1" maxOccurs="1">
-				<xsd:element name="townKladrCode" type="stringNN-50" minOccurs="0"/>
-				<xsd:element name="streetKladrCode" type="stringNN-50" minOccurs="0"/>
-				<xsd:element name="fiasHouseCode" type="stringNN-50" minOccurs="0"/>
-			</xsd:choice>
-			<xsd:element name="index" type="stringNN-50" minOccurs="0"/>
-			<xsd:element name="town" type="stringNN-50" minOccurs="0"/>
-			<xsd:element name="street" type="stringNN-50" minOccurs="0"/>
-			<xsd:element name="house" type="stringNN-50" minOccurs="0"/>
-			<xsd:element name="building" type="stringNN-50" minOccurs="0"/>
-			<xsd:element name="apartment" type="stringNN-50" minOccurs="0"/>
-			<xsd:element name="strAddress">
-				<xsd:simpleType>
-					<xsd:restriction base="xsd:string">
-						<xsd:maxLength value="300"/>
-					</xsd:restriction>
-				</xsd:simpleType>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-
-	<!-- Контактная информация пользователя-->
-	<xsd:simpleType name="EmailType">
-		<xsd:annotation>
-			<xsd:documentation>Адрес электронной почты</xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:string">
-			<xsd:maxLength value="256"/>
-			<xsd:pattern value="[0-9a-zA-Z_.\-]{2,50}[@]{1}[0-9a-zA-Z_./-]{2,50}[.]{1}[a-zA-Z]{2,5}"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<xsd:simpleType name="PhoneType">
-		<xsd:annotation>
-			<xsd:documentation>Телефонный номер</xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:string">
-			<xsd:maxLength value="256"/>
-			<xsd:pattern value="[0-9]{11}"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-
-
-
-
-
-	<!-- Тестовые куски какой-то там услуги-->
-	<xsd:element name="applicationNumber">
-		<xsd:simpleType>
-			<xsd:annotation>
-				<xsd:documentation>
-                    Номер заявления в какой-то там услуге
-				</xsd:documentation>
-			</xsd:annotation>
-			<xsd:restriction base="xsd:string">
-				<xsd:pattern value="[0-9]"/>
-			</xsd:restriction>
-		</xsd:simpleType>
-	</xsd:element>
-
-
-
-
-	<!--Коллекция радио-кнопок-->
-
-	<!--Предоставление компенсации расходов, связанных с установкой в муниципальных жилых помещениях приборов учета используемых воды и электрической энергии-->
-	<xsd:simpleType name="KP_OA_03Type">
-		<xsd:restriction base="xsd:byte">
-			<xsd:enumeration value="1">
-				<xsd:annotation>
-					<xsd:documentation>Родитель</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="2">
-				<xsd:annotation>
-					<xsd:documentation>Опекун</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="3">
-				<xsd:annotation>
-					<xsd:documentation>Попечитель</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<xsd:simpleType name="FieldRadioType">
-		<xsd:annotation>
-			<xsd:documentation>Тип заявлния</xsd:documentation>
-		</xsd:annotation>
-		<xsd:restriction base="xsd:byte">
-			<xsd:enumeration value="1">
-				<xsd:annotation>
-					<xsd:documentation>Документы к заявлению о зачислении в образовательное учреждение</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-			<xsd:enumeration value="2">
-				<xsd:annotation>
-					<xsd:documentation>Документы на комиссию для детей младше 6,6 лет или старше 8 лет (при необходимости)</xsd:documentation>
-				</xsd:annotation>
-			</xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
-
-
-	<!-- Документы -->
-	<xsd:simpleType name="oktmo">
-		<xsd:restriction base="xsd:string">
-			<xsd:minLength value="1"/>
-			<xsd:maxLength value="11"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-	<xsd:simpleType name="snils">
-		<xsd:restriction base="xsd:string">
-			<xsd:maxLength value="14"/>
-			<xsd:pattern value="[0-9]{3}[-][0-9]{3}[-][0-9]{3} [0-9]{2}"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-	<xsd:simpleType name="inn">
-		<xsd:restriction base="xsd:string">
-			<xsd:maxLength value="10"/>
-			<xsd:pattern value="[0-9]{10}"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<xsd:simpleType name="ogrn">
-		<xsd:restriction base="xsd:string">
-			<xsd:maxLength value="13"/>
-			<xsd:pattern value="[0-9]{13}"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-	<xsd:simpleType name="kpp">
-		<xsd:restriction base="xsd:string">
-			<xsd:maxLength value="13"/>
-			<xsd:pattern value="[0-9]{9}"/>
-		</xsd:restriction>
-	</xsd:simpleType>
-
-	<xsd:complexType name="DocumentBlockType">
-		<xsd:annotation>
-			<xsd:documentation>Реквизиты документа, удостоверяющего личность</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="DocName" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>Наименование документа, удостоверяющего личность</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="DocSeries" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>Серия</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="DocNumber" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>Номер</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="DocDate" type="tns:date">
-				<xsd:annotation>
-					<xsd:documentation>Дата выдачи</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-
-
-
-
-	<!--Получение выплат-->
-	<xsd:complexType name="CreditBlockType">
-		<xsd:annotation>
-			<xsd:documentation>Укажите банковские реквизиты для перечисления выплаты</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="CheckboxNameAndBIKOrgan" type="xsd:boolean">
-				<xsd:annotation>
-					<xsd:documentation>Ввести реквизиты кредитной организации вручную</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="BIKBankName" type="xsd:string" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>БИК или наименование банка получателя</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="BankName" type="xsd:string" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Наименование банка</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="bankBIK" type="tns:string-9" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>БИК</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="acountBank" type="tns:string-20" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Корреспондентский счет банка</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="AccountNumber" type="tns:string-20" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xsd:documentation>Номер счета заявителя</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-
-
-	<!--Возможно рабочий варик вложений-->
-	<xsd:complexType name="DocumentsType">
-		<xsd:annotation>
-			<xsd:documentation>Сведения о вложениях</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="PowerOfAppointment" type="tns:DocInfoType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation>Копия доверенности представиеля</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="PremisesIeaseAgreement" type="tns:DocInfoType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation>Договор найма (поднайма) жилого помещения</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-
-	<xsd:complexType name="DocInfoType">
-		<xsd:annotation>
-			<xsd:documentation>Сведения о вложении</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="CodeDocument" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>Код документа</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="Name" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>Имя файла документа</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="URL" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>Относительный путь к файлу внутри архива</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="type" type="xsd:string">
-				<xsd:annotation>
-					<xsd:documentation>MIME-тип контента</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
-
-	<!-- Номер заявки в лк, вроде как есть во всех ВС что я видела -->
-	<xsd:complexType name="FormResponseType">
-		<xsd:annotation>
-			<xsd:documentation>Ответ на подачу заявления или запроса на отмену заявления или текстового сообщения от заявителя в ведомство</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="changeOrderInfo" type="tns:changeOrderInfoType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:element name="FormResponse" type="tns:FormResponseType"/>
-	<xsd:complexType name="changeOrderInfoType">
-		<xsd:annotation>
-			<xsd:documentation>Информация для изменения статуса заявления в ЛК ЕПГУ</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="orderId" type="tns:orderIdType"/>
-			<xsd:element name="statusCode" type="tns:statusCodeType"/>
-			<xsd:element name="comment" type="tns:string-2048" minOccurs="0"/>
-			<xsd:element name="cancelAllowed" type="xsd:boolean" minOccurs="0"/>
-			<xsd:element name="sendMessageAllowed" type="xsd:boolean" minOccurs="0"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="orderIdType">
-		<xsd:sequence>
-			<xsd:annotation>
-				<xsd:documentation>Номер заявки в ЛК ЕПГУ</xsd:documentation>
-			</xsd:annotation>
-			<xsd:element name="pguId" type="xsd:long"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="statusCodeType">
-		<xsd:annotation>
-			<xsd:documentation>Новый статус заявления</xsd:documentation>
+			<xsd:documentation>Данные о заявителе</xsd:documentation>
 		</xsd:annotation>
 		<xsd:choice>
-			<xsd:element name="orgCode" type="tns:string-20">
+			<xsd:element name="RecipientIndividualData">
 				<xsd:annotation>
-					<xsd:documentation>Код ведомственного статуса</xsd:documentation>
+					<xsd:documentation>Данные о физическом лице</xsd:documentation>
 				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="techCode" type="tns:string-20">
-				<xsd:annotation>
-					<xsd:documentation>Код статуса ЕПГУ</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:choice>
-	</xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="FullFIO" type="xsd:string" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>ФИО</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="FullFIO_GenitiveCase" type="xsd:string" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>ФИО в родительном падеже</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="lastname" type="fio">
+						<xsd:annotation>
+							<xsd:documentation>Фамилия</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="firstname" type="fio">
+						<xsd:annotation>
+							<xsd:documentation>Имя</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="middlename" type="fio" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Отчество</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SNILS" type="SNILSDataType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>СНИЛС</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="gender" type="gender" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Пол</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dateBirth" type="date" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Дата рождения</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="citizenship" type="xsd:string" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Гражданство</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Phone" type="PhoneType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Телефон</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Email" type="EmailType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Электронная почта</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="RegAddress" type="AddressDataType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Адрес регистрации</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ResAddress" type="AddressDataType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Адрес проживания</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="PostalAddress" type="AddressDataType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Почтовый адрес</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="DocumentPersonal" type="tns:DocumentPersonalType" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Данные Документа удостоверяющего личность</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:element>
+
+				<xsd:element name="RecipientIndividualEntrepreneurData">
+					<xsd:annotation>
+						<xsd:documentation>Данные о индивидуальном предпринимателе</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="IndividualEntrepreneurName" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Наименование ИП</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="fullfio" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>ФИО</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="lastname" type="fio">
+							<xsd:annotation>
+								<xsd:documentation>Фамилия</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="firstname" type="fio">
+							<xsd:annotation>
+								<xsd:documentation>Имя</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="middlename" type="fio" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Отчество</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="SNILS" type="SNILSDataType" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>СНИЛС</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="INN" type="INNDataType" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>ИНН</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="OGRN" type="OGRNDataType" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>ОГРН</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Phone" type="PhoneType">
+							<xsd:annotation>
+								<xsd:documentation>Телефон</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Email" type="EmailType">
+							<xsd:annotation>
+								<xsd:documentation>Электронная почта</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="RegAddress" type="AddressDataType" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Адрес регистрации</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ResAddress" type="AddressDataType" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Адрес проживания</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="DocumentPersonal" type="tns:DocumentPersonalType" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Данные Документа удостоверяющего личность</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:element>
+
+					<xsd:element name="RecipientEntityData">
+						<xsd:annotation>
+							<xsd:documentation>Данные о юридическом лице</xsd:documentation>
+						</xsd:annotation>
+						<xsd:sequence>
+							<xsd:element name="FullName" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>Полное наименование</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="DirectorLastname" type="fio">
+								<xsd:annotation>
+									<xsd:documentation>Фамилия руководителя</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="DirectorFirstname" type="fio">
+								<xsd:annotation>
+									<xsd:documentation>Имя руководителя</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="DirectorLastname" type="fio" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation>Отчество руководителя</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ActBasis" type="EmailType">
+								<xsd:annotation>
+									<xsd:documentation>Действует на основании</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LegalAddress" type="AddressDataType" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation>Юридический адрес</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="PostalAddress" type="AddressDataType" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation>Почтовый адрес</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="INN" type="INNDataType" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation>ИНН</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="OGRN" type="OGRNDataType" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation>ОГРН</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="KPP" type="KPPDataType" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation>КПП</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Phone" type="PhoneType">
+								<xsd:annotation>
+									<xsd:documentation>Телефон</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Email" type="EmailType">
+								<xsd:annotation>
+									<xsd:documentation>Электронная почта</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+						</xsd:sequence>
+					</xsd:element>
+
+
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
 
 
 
-</xsd:schema>
+		<xsd:complexType name="RepresentativePersonalDataType">
+			<xsd:annotation>
+				<xsd:documentation>Данные о представителе заявителя</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="fullfio" type="xsd:string" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>ФИО</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="lastname" type="fio" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Фамилия</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="firstname" type="fio" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Имя</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="middlename" type="fio" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Отчество</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Phone" type="PhoneType" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Телефон</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+
+
+		<xsd:simpleType name="RecipientCategoryInfoType">
+			<xsd:annotation>
+				<xsd:documentation>Категория заявителя</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:byte">
+				<xsd:enumeration value="1">
+					<xsd:annotation>
+						<xsd:documentation>Заявитель</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="2">
+					<xsd:annotation>
+						<xsd:documentation>Представитель</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+		<xsd:simpleType name="RecipientTypeDataType">
+			<xsd:annotation>
+				<xsd:documentation>Тип заявителя</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:byte">
+				<xsd:enumeration value="1">
+					<xsd:annotation>
+						<xsd:documentation>Физическое лицо</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="2">
+					<xsd:annotation>
+						<xsd:documentation>Юридическое лицо</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="3">
+					<xsd:annotation>
+						<xsd:documentation>Индивидуальный предприниматель</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+
+
+		<xsd:complexType name="AddressDataType">
+			<xsd:annotation>
+				<xsd:documentation>
+                Адрес
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:choice minOccurs="1" maxOccurs="1">
+					<xsd:element name="townKladrCode" type="stringNN-50" minOccurs="0"/>
+					<xsd:element name="streetKladrCode" type="stringNN-50" minOccurs="0"/>
+					<xsd:element name="fiasHouseCode" type="stringNN-50" minOccurs="0"/>
+				</xsd:choice>
+				<xsd:element name="index" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="town" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="street" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="house" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="building" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="apartment" type="stringNN-50" minOccurs="0"/>
+				<xsd:element name="strAddress">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="300"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+
+		<!-- Контактная информация пользователя-->
+		<xsd:simpleType name="EmailType">
+			<xsd:annotation>
+				<xsd:documentation>Адрес электронной почты</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="256"/>
+				<xsd:pattern value="[0-9a-zA-Z_.\-]{2,50}[@]{1}[0-9a-zA-Z_./-]{2,50}[.]{1}[a-zA-Z]{2,5}"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+		<xsd:simpleType name="PhoneType">
+			<xsd:annotation>
+				<xsd:documentation>Телефонный номер</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="256"/>
+				<xsd:pattern value="[0-9]{11}"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+
+
+
+		<xsd:simpleType name="RB_SERVICE_RESULT_TYPE">
+			<xsd:annotation>
+				<xsd:documentation>Способ получения результата услуги</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:byte">
+				<xsd:enumeration value="1">
+					<xsd:annotation>
+						<xsd:documentation>Лично</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="2">
+					<xsd:annotation>
+						<xsd:documentation>На электронную почту</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="3">
+					<xsd:annotation>
+						<xsd:documentation>Личный кабинет</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="4">
+					<xsd:annotation>
+						<xsd:documentation>Почтовым отправлением</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+
+		<xsd:simpleType name="RB_PAYMENT_RECEIPT_TYPE">
+			<xsd:annotation>
+				<xsd:documentation>Способ предоставления квитанции об оплате</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:byte">
+				<xsd:enumeration value="1">
+					<xsd:annotation>
+						<xsd:documentation>Лично</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="2">
+					<xsd:annotation>
+						<xsd:documentation>На электронную почту</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="3">
+					<xsd:annotation>
+						<xsd:documentation>Личный кабинет</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+
+			</xsd:restriction>
+		</xsd:simpleType>
+
+
+
+
+
+		<!--Услуга: Предоставление компенсации расходов, связанных с установкой в муниципальных жилых помещениях приборов учета используемых воды и электрической энергии-->
+
+		<xsd:simpleType name="RB_MTR_DVC_TYPE">
+			<xsd:annotation>
+				<xsd:documentation>Установленные приборы учёта</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:byte">
+				<xsd:enumeration value="1">
+					<xsd:annotation>
+						<xsd:documentation>Прибор учёта воды</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="2">
+					<xsd:annotation>
+						<xsd:documentation>Прибор учёта электричества</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="3">
+					<xsd:annotation>
+						<xsd:documentation>Прибор учёта воды и электричества</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+
+		<xsd:complexType name="MeteringDevicesDataType">
+			<xsd:annotation>
+				<xsd:documentation>Данные о приборах учёта</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="meteringDevicesAdress" type="AdressDataType">
+					<xsd:annotation>
+						<xsd:documentation>Адрес по котрому установлены приборы учёта.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="type" type="RB_MTR_DVC_Type">
+					<xsd:annotation>
+						<xsd:documentation>Установленные приборы учёта</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ElectricityMeteringDevicesInfo" type="MeteringDevicesInfoDataType">
+					<xsd:annotation>
+						<xsd:documentation>Сведения о приборах учёта электричества</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="WaterMeteringDevicesInfo" type="MeteringDevicesInfoDataType">
+					<xsd:annotation>
+						<xsd:documentation>Сведения о приборах учёта воды</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+
+
+		<xsd:complexType name="MeteringDevicesInfoDataType">
+			<xsd:annotation>
+				<xsd:documentation>Сведения о приборах учёта</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="amount" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Количество, штук</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="devicesCost" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Стоимость прибора учета и комплектующих к ним, материалов, необходимых для установки приборов учета, руб.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="installationСost" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Стоимость установки, руб.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="totalCost" type="fio" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Итоговая сумма, которую необходимо компенсировать</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+
+
+		<!--Услуга: Выдача документов (выписки из домовой книги, карточки учета собственника жилого помещения, справок и иных документов) в сфере жилищно-коммунального хозяйства-->
+
+		<xsd:simpleType name="RB_HOUSE_TYPE">
+			<xsd:annotation>
+				<xsd:documentation>Тип жилого помещения, в отношении которого запрашиваются сведения</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:byte">
+				<xsd:enumeration value="1">
+					<xsd:annotation>
+						<xsd:documentation>Индивидуальный жилой дом</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="2">
+					<xsd:annotation>
+						<xsd:documentation>Коммунальная квартира</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="3">
+					<xsd:annotation>
+						<xsd:documentation>Отдельная квартира в многоквартирном доме</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+		<xsd:simpleType name="RB_NOTE_TYPE">
+			<xsd:annotation>
+				<xsd:documentation>Наименование запрашиваемого документа</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:byte">
+				<xsd:enumeration value="1">
+					<xsd:annotation>
+						<xsd:documentation>Справка о регистрации граждан по месту жительства и месту пребывания без указания сведений о ранее зарегистрированных в жилом помещении гражданах</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="2">
+					<xsd:annotation>
+						<xsd:documentation>Справка о регистрации гражданина по месту жительства и месту пребывания</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+		<xsd:complexType name="HouseDocumentsRequestDataType">
+			<xsd:annotation>
+				<xsd:documentation>Выдача документов</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="HouseDocumentsRequest_Adress" type="AdressDataType">
+					<xsd:annotation>
+						<xsd:documentation>Адрес по которому запрашиваются документы</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="HouseType" type="RB_HOUSE_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Тип жилого помещения</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="NoteType" type="RB_NOTE_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Наименование запрашиваемого документа</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="RegistrationPeriod" type="date">
+					<xsd:annotation>
+						<xsd:documentation>Период регистрации</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+
+
+
+		<!--Услуга: Выдача градостроительных планов земельных участков-->
+
+		<xsd:complexType name="LandPlotDataType">
+			<xsd:annotation>
+				<xsd:documentation>Сведения о земельном участке</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:element name="LandPlotComplexAdress">
+						<xsd:element name="LandPlotAdress" type="AddressDataType">
+							<xsd:annotation>
+								<xsd:documentation>Адрес расположения земельного участка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="LandPlotInaccurateAdress" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Местоположение земельного участка с привязкой к ориентиру</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="CadastralNumber" type="CadastralNumberDataType">
+							<xsd:annotation>
+								<xsd:documentation>Кадастровый номер земельного участка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:element>
+					<xsd:element name="LandPlotAdress" type="AddressDataType">
+						<xsd:annotation>
+							<xsd:documentation>Адрес расположения земельного участка</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:choice>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+				<!--Услуга: Выдача дубликатов разрешений на строительство и ввод в эксплуатацию объектов капитального строительства-->
+				<xsd:simpleType name="RB_ISSUED_PERMIT_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Запрашиваемый дубликат разрешения</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>Строительство</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>Ввод объекта в эксплуатацию</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:complexType name="DetailsIssuedPermitDataType">
+					<xsd:annotation>
+						<xsd:documentation>Реквизиты выданного разрешения на строительство</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="IssuedPermitType" type="RB_ISSUED_PERMIT_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Запрашиваемый дубликат разрешения</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="IssuedPermitDate" type="date">
+							<xsd:annotation>
+								<xsd:documentation>Дата выдачи</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="IssuedPermitId" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Номер</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+				<xsd:complexType name="ConstructionObjectDataType">
+					<xsd:annotation>
+						<xsd:documentation>Сведения об объекте строительства</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="ConstructionObjectName" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Наименование объекта</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="AdministrativeDistrict" type="AddressDataType" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Административный район города</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConstructionObjectAdress" type="AddressDataType">
+							<xsd:annotation>
+								<xsd:documentation>Адрес объекта</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+				<xsd:complexType name="DuplicatePermissionsRequestDetailsDataType">
+					<xsd:annotation>
+						<xsd:documentation>Детали запроса на получение дубликатов разрешений</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="DetailsIssuedPermitData" type="ConsDetailsIssuedPermitDataTypetructionObjectDataType">
+							<xsd:annotation>
+								<xsd:documentation>Реквизиты выданного разрешения</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConstructionObjectData" type="ConstructionObjectDataType">
+							<xsd:annotation>
+								<xsd:documentation>Сведения об объекте строительства</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="OriginalLossReason" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Причина утраты оригинала</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+				<!--Услуга: Выдача разрешений на ввод в эксплуатацию, внесение изменений в разрешения на ввод в эксплуатацию объектов капитального строительства-->
+				<xsd:simpleType name="RB_CONSTR_OPERATION_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Тип строительной операции</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>Строительство</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>Реконструкция</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:complexType name="DetailsOperationPermitDataType">
+					<xsd:annotation>
+						<xsd:documentation>Реквизиты выданного разрешения</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="OperationPermitType" type="RB_CONSTR_OPERATION_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Тип строительной операции</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="OperationPermitDate" type="date">
+							<xsd:annotation>
+								<xsd:documentation>Дата выдачи</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="OperationPermitId" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Номер</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+				<xsd:complexType name="IssuancePermitsDetailsDataType">
+					<xsd:annotation>
+						<xsd:documentation>Детали запроса на выдачу разрешения, внесения изменений в разрешения</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="DetailsOperationPermitData" type="DetailsOperationPermitDataType">
+							<xsd:annotation>
+								<xsd:documentation>Реквизиты разрешения на строительство</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ConstructionObjectData" type="ConstructionObjectDataType">
+							<xsd:annotation>
+								<xsd:documentation>Сведения об объекте строительства</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="StageDescription" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Описание этапа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="AdministrativeDistrict" type="AddressDataType">
+							<xsd:annotation>
+								<xsd:documentation>Административный район города</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="RequiredChanges" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Изменения, которые требуется внести</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ChangesReason" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Причина внесения изменений</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+
+				<!--Услуга: Предоставление сведений из информационной системы обеспечения градостроительной деятельности-->
+				<xsd:simpleType name="RB_DOCUMENT_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Тип требуемого документа</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>Сведения из информационной системы обеспечения</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>Копию\выписку\часть документа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:simpleType name="RB_SUBMISSION_FORM_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Форма представления сведений</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>В виде бумажного документа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>В виде электронной копии документа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+
+				<xsd:simpleType name="RB_AREA_REQUEST_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Тип территории, о которой запрашиваются сведения</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>О территории муниципального образования</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>О земельном участке с кадастровым номером</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="3">
+							<xsd:annotation>
+								<xsd:documentation>Об объекте капитального строительства</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:simpleType name="RB_AREA_BORDER_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Границы внутри которых находится территория, о которой запрашиваются сведения</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>В границе района(ов), жилого района</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>В квартале улиц</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="3">
+							<xsd:annotation>
+								<xsd:documentation>В границе улиц</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="4">
+							<xsd:annotation>
+								<xsd:documentation>На пересечении улиц</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:simpleType name="CB_SECTION_SELECT_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Выбор раздела для предоставления сведений</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="0">
+							<xsd:annotation>
+								<xsd:documentation>Раздел не выбран</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>Раздел выбран</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:complexType name="DetailsDocumentsRequestDataType">
+					<xsd:annotation>
+						<xsd:documentation>Детали запроса на выдачу сведений</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="DocumentType" type="RB_DOCUMENT_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Тип документа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="AreaRequestType" type="RB_AREA_REQUEST_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Тип территории, о которой запрашиваются сведения</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="AreaBorderType" type="RB_AREA_BORDER_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Границы внутри которых находится территория, о которой запрашиваются сведения</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:choice>
+							<xsd:choice>
+								<xsd:element name="DistrictsList" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Список районов</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="StreetsList" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Список улиц</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+
+							</xsd:choice>
+							<xsd:choice>
+								<xsd:element name="CadastralNumber" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Кадастровый номер</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="AreaAdress" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Адрес участка</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+
+							</xsd:choice>
+							<xsd:choice>
+								<xsd:element name="CapitalConstruction" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Назначение и адрес объекта капитального строительства</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:choice>
+						</xsd:choice>
+
+						<xsd:element name="DocumentChoise_1">
+							<xsd:annotation>
+								<xsd:documentation>Предоставление информации в виде документа содержащего сведения о документе(ах), размещённых в разделе(ах) информационной системы</xsd:documentation>
+							</xsd:annotation>
+							<xsd:element name="Section_1" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 1</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Section_2" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 2</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Section_3" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 3</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Section_4" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 4</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Section_5" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 5</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+
+						<xsd:element name="DocumentChoise_2">
+							<xsd:annotation>
+								<xsd:documentation>Предоставление информации в виде документа  содержащего сведения об изученности природных и техногенных условий на основании результатов инженерных изысканий </xsd:documentation>
+							</xsd:annotation>
+							<xsd:element name="EngineeringGeodesic" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Инженерно-геодезическое</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="EngineeringGeological" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Инженерно-геологическое</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="EngineeringEnvironmental" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Инженерно-экологическое</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+
+						<xsd:element name="DocumentChoise_3">
+							<xsd:annotation>
+								<xsd:documentation>Предоставление информации в виде документа содержащего сведения об изъятии и резервировании земельных участков для государственных или муниципальных нужд (раздел VII)</xsd:documentation>
+							</xsd:annotation>
+							<xsd:element name="Section_7" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 7</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+
+						<xsd:element name="DocumentChoise_4">
+							<xsd:annotation>
+								<xsd:documentation>Предоставление информации в виде документа содержащего сведения о документах, размещенных в деле о застроенном и подлежащем застройке земельном участке (раздел VIII)</xsd:documentation>
+							</xsd:annotation>
+							<xsd:element name="Section_8" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 8</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+
+						<xsd:element name="DocumentChoise_5">
+							<xsd:annotation>
+								<xsd:documentation>Предоставление информации в виде документа содержащего сведения о картах (схемах) раздела IX «Геодезические и картографические материалы»</xsd:documentation>
+							</xsd:annotation>
+							<xsd:element name="Section_9" type="CB_SECTION_SELECT_TYPE">
+								<xsd:annotation>
+									<xsd:documentation>Раздел 9</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+				<!--Услуга: Согласование местоположения границ земельных участков, являющихся смежными по отношению к земельным участкам, находящимся в муниципальной собственности или в государственной собственности до ее разграничения-->
+
+				<xsd:simpleType name="RB_SELECT_SERVICE_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Выбор услуги</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>Согласование местоположения границ земельных участков в индивидуальном порядке</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>Согласование местоположения границ посредством проведения собрания заинтересованных лиц</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:simpleType name="RB_SELECT_INFO_FIELD_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Выбор полей для заполнения сведений о хемельном участке</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>Адрес (местоположение) земельного участка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>Кадастровый номер земельного участка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="3">
+							<xsd:annotation>
+								<xsd:documentation>Адрес (местоположение) и кадастровый номер земельного участка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+
+				<xsd:complexType name="CoordinationLocationLandBoundariesDataType">
+					<xsd:annotation>
+						<xsd:documentation>Детали о запросе на cогласование местоположения границ земельных участков</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="SelectService" type="RB_SELECT_SERVICE_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Выбор услуги</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="SelectField" type="RB_SELECT_INFO_FIELD_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Выбор полей</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:choise>
+							<xsd:choice>
+								<xsd:element name="LandPlotInfo">
+									<xsd:element name="LandPlotAdress" type="AddressDataType">
+										<xsd:annotation>
+											<xsd:documentation>Адрес расположения земельного участка</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="CadastralNumber" type="CadastralNumberDataType">
+										<xsd:annotation>
+											<xsd:documentation>Кадастровый номер земельного участка</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:element>
+								<xsd:element name="LandPlotAdress" type="AddressDataType">
+									<xsd:annotation>
+										<xsd:documentation>Адрес расположения земельного участка</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="CadastralNumber" type="CadastralNumberDataType">
+									<xsd:annotation>
+										<xsd:documentation>Кадастровый номер земельного участка</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:choice>
+
+							<xsd:element name="MeetingHeldData">
+								<xsd:annotation>
+									<xsd:documentation>Данные о решении посредством собрания заинтересованных лиц</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="СadastralEngineerInfo">
+									<xsd:annotation>
+										<xsd:documentation>Информация о кадастровом инженере</xsd:documentation>
+									</xsd:annotation>
+									<xsd:element name="СadastralEngineerFIO" type="xsd:string">
+										<xsd:annotation>
+											<xsd:documentation>Фамилия, имя, отчество</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="СadastralEngineerCertificate" type="xsd:string">
+										<xsd:annotation>
+											<xsd:documentation>Номер квалификационного аттестата</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:element>
+								<xsd:element name="LandPlotInfo">
+									<xsd:element name="LandPlotAdress" type="AddressDataType">
+										<xsd:annotation>
+											<xsd:documentation>Адрес расположения земельного участка</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="CadastralNumber" type="CadastralNumberDataType">
+										<xsd:annotation>
+											<xsd:documentation>Кадастровый номер земельного участка</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="AdjacentLandPlotsData" type="xsd:string">
+										<xsd:annotation>
+											<xsd:documentation>Кадастровый номер земельного участка</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:element>
+								<xsd:element name="MeetingInfo">
+									<xsd:element name="MeetingAdress" type="AddressDataType">
+										<xsd:annotation>
+											<xsd:documentation>Адрес проведения собрания</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="MeetingDate" type="date">
+										<xsd:annotation>
+											<xsd:documentation>Дата проведения собрания</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="MeetingTime" type="xsd:string">
+										<xsd:annotation>
+											<xsd:documentation>Время проведения собрания</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="DraftBoundaryPlanFamiliarization " type="xsd:string">
+										<xsd:annotation>
+											<xsd:documentation>Адрес для ознакомления с проектом межевого плана </xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:element>
+								<xsd:element name="ObjectionAccepting">
+									<xsd:element name="ObjectionAccepting_From" type="date">
+										<xsd:annotation>
+											<xsd:documentation>Дата начала приёма возражений</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="ObjectionAccepting_To" type="date">
+										<xsd:annotation>
+											<xsd:documentation>Дата конца приёма возражений</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="ObjectionsSendingAddress" type="AddressDataType">
+										<xsd:annotation>
+											<xsd:documentation>Адрес направления обоснованных возражений </xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:element>
+
+							</xsd:element>
+						</xsd:choice>
+					</xsd:sequence>
+				</xsd:complexType>
+
+				<!--Услуга: Прием в собственность муниципального образования «город Екатеринбург» имущества, находящегося в частной собственности-->
+
+
+				<xsd:simpleType name="CONSTRUCTION_OBJECT_TYPE">
+					<xsd:annotation>
+						<xsd:documentation>Тип объекта</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1">
+							<xsd:annotation>
+								<xsd:documentation>Нежилое здание</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="2">
+							<xsd:annotation>
+								<xsd:documentation>Сооружение</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="3">
+							<xsd:annotation>
+								<xsd:documentation>Помещение</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="4">
+							<xsd:annotation>
+								<xsd:documentation>Земельный участок</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="5">
+							<xsd:annotation>
+								<xsd:documentation>Иной объект недвижимости</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+						<xsd:enumeration value="6">
+							<xsd:annotation>
+								<xsd:documentation>Объект движимого имущества</xsd:documentation>
+							</xsd:annotation>
+						</xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+
+				<xsd:complexType name="PrivatePropertyDataType">
+					<xsd:annotation>
+						<xsd:documentation>Сведения об объекте частной собственности</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="ConstructionObjectType" type="CONSTRUCTION_OBJECT_TYPE">
+							<xsd:annotation>
+								<xsd:documentation>Тип объекта частной собственности</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+
+						<xsd:choice>
+							<xsd:element name="NonResidentialBuildingType">
+								<xsd:annotation>
+									<xsd:documentation>Нежилое здание</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="ConstructionObjectName" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Наименование</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectAdress" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Адрес</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectFloorsNumber" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Этажность</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectSquare" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Площадь</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:element>
+							<xsd:element name="ConstructionType">
+								<xsd:annotation>
+									<xsd:documentation>Сооружение</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="ConstructionObjectName" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Наименование</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectAdress" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Адрес</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectLength" type="xsd:string" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Протяженность</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectSquare" type="xsd:string" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Площадь</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:element>
+							<xsd:element name="RoomType">
+								<xsd:annotation>
+									<xsd:documentation>Помещение</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="ConstructionObjectName" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Наименование</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectAdress" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Адрес</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectFloor" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Этаж</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectNumber" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Номер</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectType">
+									<xsd:annotation>
+										<xsd:documentation>Тип</xsd:documentation>
+									</xsd:annotation>
+									<xsd:restriction base="xsd:byte">
+										<xsd:enumeration value="1">
+											<xsd:annotation>
+												<xsd:documentation>Жилое</xsd:documentation>
+											</xsd:annotation>
+										</xsd:enumeration>
+										<xsd:enumeration value="2">
+											<xsd:annotation>
+												<xsd:documentation>Нежилое</xsd:documentation>
+											</xsd:annotation>
+										</xsd:enumeration>
+									</xsd:restriction>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectSquare" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Площадь</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:element>
+							<xsd:element name="LandPlotType">
+								<xsd:annotation>
+									<xsd:documentation>Земельный участок</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="ConstructionObjectAdress" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Адрес</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectSquare" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Площадь</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectCadastralNumber" type="CadastralNumberDataType">
+									<xsd:annotation>
+										<xsd:documentation>Кадастровый номер</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:element>
+							<xsd:element name="OtherEstateObjectType">
+								<xsd:annotation>
+									<xsd:documentation>Иной объект недвижимости</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="ConstructionObjectName" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Наименование</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectAdress" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Адрес</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectLength" type="xsd:string" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Протяженность</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectSquare" type="xsd:string" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>Площадь</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:element>
+							<xsd:element name="MovablePropertyType">
+								<xsd:annotation>
+									<xsd:documentation>Объект движимого имущества</xsd:documentation>
+								</xsd:annotation>
+								<xsd:element name="ConstructionObjectName" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Наименование</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="ConstructionObjectFeature" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>Индивидуализирующие признаки</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:element>
+						</xsd:choice>
+
+						<xsd:element name="ConstructionObjectNote" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Примечание</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+				<!--Услуга: Отчуждение недвижимого имущества, находящегося в муниципальной собственности и арендуемого субъектами малого и среднего предпринимательства-->
+
+
+
+
+
+
+
+
+
+
+				<!-- Документы -->
+				<xsd:simpleType name="CadastralNumberDataType">
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="19"/>
+						<xsd:pattern value="[0-9]{2}[:][0-9]{2}[:][0-9]{7}[:][0-9]{5}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:simpleType name="OKTMODataType">
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="11"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+				<xsd:simpleType name="SNILSDataType">
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="14"/>
+						<xsd:pattern value="[0-9]{3}[-][0-9]{3}[-][0-9]{3} [0-9]{2}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+				<xsd:simpleType name="INNDataType">
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+						<xsd:pattern value="[0-9]{10}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:simpleType name="OGRNDataType">
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="13"/>
+						<xsd:pattern value="[0-9]{13}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+				<xsd:simpleType name="KPPDataType">
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="13"/>
+						<xsd:pattern value="[0-9]{9}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+
+				<xsd:complexType name="DocumentBlockType">
+					<xsd:annotation>
+						<xsd:documentation>Реквизиты документа, удостоверяющего личность</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="DocName" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Наименование документа, удостоверяющего личность</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="DocSeries" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Серия</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="DocNumber" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Номер</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="DocDate" type="tns:date">
+							<xsd:annotation>
+								<xsd:documentation>Дата выдачи</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+
+
+
+
+
+
+				<!--Банковские реквизиты>-->
+				<xsd:complexType name="CreditBlockType">
+					<xsd:annotation>
+						<xsd:documentation>Укажите банковские реквизиты для перечисления выплаты</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="AccountHolderData" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Фамилия, имя, отчество или наименование владельца счета</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="PaymentAccount" type="xsd:string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Расчётный счёт банка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="CorrespondentAccount" type="xsd:string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Корреспондентский счёт банка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="BankBIKorName" type="xsd:string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>БИК или наименование банка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="BankName" type="xsd:string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Наименование банка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="BankBIK" type="string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>БИК банка</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="AccountNumber" type="string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>Номер счета заявителя</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="BankKPPDataType" type="string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>КПП</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="BankINNDataType" type="string" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>ИНН</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+
+				<!--Возможно рабочий варик вложений-->
+				<xsd:complexType name="DocumentsType">
+					<xsd:annotation>
+						<xsd:documentation>Сведения о вложениях</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<!--Документы услуги -->
+						<xsd:element name="PowerOfAppointment" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Информация о копии доверенности представиеля</xsd:documentation>
+							</xsd:annotation>
+							<xsd:element name="PowerOfAppointment_Details" type="xsd:string" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Реквизиты доверенности</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="PowerOfAppointment_Document" type="DocInfoType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>Копия доверенности представиеля</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+						<xsd:element name="ArticlesAssociationExtract" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Выписка из устава</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<xsd:element name="MeteringDevices_Documents" minOccurs="0">
+							<!-- Документы подтверждающие приобретение и оплату приборов учёта и комплектующих к ним-->
+							<xsd:element name="MeteringDevices_Receipts" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Кассовые и товарные чеки или платежные поручения</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="MeteringDevices_PurchaseAndSaleAgreement" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Договор купли-продажи (поставки) приборов учета и комплектующих к ним, материалов, необходимых для установки приборов учета</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="MeteringDevices_ConsignmentNotes" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Товарные накладные</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<!--Документы, подтверждающие выполнение и оплату работ по установке индивидуальных приборов учёта-->
+							<xsd:element name="MeteringDevicesInstallation_Agreement" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Договор на выполнение работ по установке индивидуальных приборов учета</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="MeteringDevicesInstallation_Certificates" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Акты выполненных работ</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="MeteringDevicesInstallation_Receipts" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Кассовые чеки или платежные поручения </xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<!-- Прочие документы и акты-->
+							<xsd:element name="MeteringDevices_Passport" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Паспорта на приборы учета</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="MeteringDevices_CommissioningCertificates" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Акты ввода приборов учета в эксплуатацию</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="MeteringDevices_RegisterCertificate" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Свидетельство о внесении записи в Единый государственный реестр юридических лиц или свидетельство о внесении записи в Единый государственный реестр индивидуальных предпринимателей</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ResidentialLeaseAgreement" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Договор социального найма жилого помещения/договор найма специализированного муниципального жилищного фонда/договор найма жилого помещения/ордер на жилое помещение</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+
+						<!--Услуга: Выдача градостроительных планов земельных участков-->
+						<xsd:element name="LandPlot_Documents" minOccurs="0">
+							<!-- Документы подтверждающие приобретение и оплату приборов учёта и комплектующих к ним-->
+							<xsd:element name="LandPlot_OwnershipRights" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Документ, удостоверяющий (устанавливающий) права на земельный участок</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlot_BuildingOwnershipRights" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Документ, удостоверяющий (устанавливающий) права на здание, строение, сооружение, находящиеся на земельном участке</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+						<!--Услуга: Подготовка справки о состоянии расчетов с бюджетом по арендной плате за землю-->
+						<xsd:element name="LandPlotRent_Documents" minOccurs="0">
+							<!-- Документы подтверждающие приобретение и оплату приборов учёта и комплектующих к ним-->
+							<xsd:element name="LandPlotRent_Requisites" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Реквизиты договора на аренду</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlotRent_PaymentReceipts" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копии квитанций об уплате арендной платы</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+						<!--Услуга: Выдача разрешений на строительство (реконструкцию), продление (прекращение) действия разрешений на строительство (реконструкцию), внесение изменений в разрешения на строительство (реконструкцию) объектов капитального строительства-->
+						<xsd:element name="IssuancePermits_Documents" minOccurs="0">
+							<xsd:element name="IssuancePermits_DocumentName" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Наименование документа</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="IssuancePermits_DocumentId" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Номер документа</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="IssuancePermits_DocumentDate" type="date" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Дата выдачи документа</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlot_OwnershipRights" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Документ, удостоверяющий (устанавливающий) права на земельный участок</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+
+						<!--Услуга: Согласование местоположения границ земельных участков, являющихся смежными по отношению к земельным участкам, находящимся в муниципальной собственности или в государственной собственности до ее разграничения-->
+
+						<xsd:element name="CoordinationLocationLandBoundariesData_Documents" minOccurs="0">
+
+							<xsd:element name="BoundaryPlan" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Межевой план с актом согласования местоположения границ, подготовленные в соответствии со статьями 38, 40 Федерального закона от 24.07.2007 № 221-ФЗ «О государственном кадастре недвижимости»</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlotLayoutSchemes" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копия утвержденной схемы расположения земельного участка на кадастровом плане территории</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<xsd:element name="CertificatesOwnership" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копия свидетельства о праве собственности, праве пожизненно наследуемого владения, постоянного (бессрочного) пользования на землю</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="AdministrativeActCertifyingOwnership" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копия государственного акта, удостоверяющего право собственности на землю, пожизненного наследуемого владения, бессрочного (постоянного) пользования землей граждан, предприятий, учреждений, организаций или крестьянских (фермерских) хозяйств</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="GrantingLandPlotDecision" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копия документа, содержащего решение о предоставлении земельного участка на определенном праве конкретному лицу, изданного уполномоченным органом (организацией) в порядке, установленном законодательством, действовавшим в месте издания такого документа на момент его издания</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="HouseholdBookExtract" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копия выписки из похозяйственной книги</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlotLayoutSchemes" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копия вступившего в законную силу судебного акта</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlotLayoutApproval" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Решение об утверждении схемы расположения земельного участка на кадастровом плане территории</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="StateRegistrationOfRights" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Сведения о государственной регистрации прав на земельный участок</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="CadastralStatementOfEstateObject" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Сведения о земельном участке, внесенные в государственный кадастр недвижимости, в виде кадастровой выписки об объекте недвижимости, кадастрового паспорта недвижимости, кадастрового плана территории</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+
+						<!--Услуга: Прием в собственность муниципального образования «город Екатеринбург» имущества, находящегося в частной собственности-->
+						<xsd:element name="PrivatePropertyData_Documents" minOccurs="0">
+
+							<xsd:element name="PropertyList" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копия пообъектного перечня имущества, принадлежащего заявителю и предлагаемого к передаче в собственность</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="PropertyRights" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копии документов, удостоверяющих (устанавливающих) права на объект недвижимости</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="PropertyTechnicalCondition" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Копии актов технического состояния имущества</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="IndividualEntrepreneurRegistryExtract" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Выписка из Единого государственного реестра индивидуальных предпринимателей, содержащая общие сведения об индивидуальном предпринимателе</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<xsd:element name="EstateObjectRegisteredRightsExtract" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Выписка из Единого государственного реестра прав на недвижимое имущество и сделок с ним о зарегистрированных правах на объект недвижимости, предлагаемый к передаче, содержащая общедоступные сведения о зарегистрированных правах на объект недвижимости или уведомление об отсутствии в ЕГРП запрашиваемых сведений</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlotRegisteredRightsExtract" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Выписка из Единого государственного реестра прав на недвижимое имущество и сделок с ним о зарегистрированных правах на объект недвижимости, предлагаемый к передаче, содержащая общедоступные сведения о зарегистрированных правах на земельный участок или уведомление об отсутствии в ЕГРП запрашиваемых сведений</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="EstateObjectCadastralPassport" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Кадастровый паспорт объекта недвижимости, предлагаемого к передаче в собственность муниципального образования</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="LandPlotCadastralPassport" type="DocInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xsd:annotation>
+									<xsd:documentation>Кадастровый паспорт земельного участка, предлагаемого к передаче в собственность муниципального образования</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+				<xsd:complexType name="DocInfoType">
+					<xsd:annotation>
+						<xsd:documentation>Сведения о вложении</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="CodeDocument" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Код документа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Name" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Имя файла документа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="URL" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Относительный путь к файлу внутри архива</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="type" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>MIME-тип контента</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+
+				<!-- Номер заявки в лк, вроде как есть во всех ВС что я видела -->
+				<xsd:complexType name="FormResponseType">
+					<xsd:annotation>
+						<xsd:documentation>Ответ на подачу заявления или запроса на отмену заявления или текстового сообщения от заявителя в ведомство</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="changeOrderInfo" type="tns:changeOrderInfoType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+				<xsd:element name="FormResponse" type="tns:FormResponseType"/>
+				<xsd:complexType name="changeOrderInfoType">
+					<xsd:annotation>
+						<xsd:documentation>Информация для изменения статуса заявления в ЛК ЕПГУ</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<xsd:element name="orderId" type="tns:orderIdType"/>
+						<xsd:element name="statusCode" type="tns:statusCodeType"/>
+						<xsd:element name="comment" type="tns:string-2048" minOccurs="0"/>
+						<xsd:element name="cancelAllowed" type="xsd:boolean" minOccurs="0"/>
+						<xsd:element name="sendMessageAllowed" type="xsd:boolean" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+				<xsd:complexType name="orderIdType">
+					<xsd:sequence>
+						<xsd:annotation>
+							<xsd:documentation>Номер заявки в ЛК ЕПГУ</xsd:documentation>
+						</xsd:annotation>
+						<xsd:element name="pguId" type="xsd:long"/>
+					</xsd:sequence>
+				</xsd:complexType>
+				<xsd:complexType name="statusCodeType">
+					<xsd:annotation>
+						<xsd:documentation>Новый статус заявления</xsd:documentation>
+					</xsd:annotation>
+					<xsd:choice>
+						<xsd:element name="orgCode" type="tns:string-20">
+							<xsd:annotation>
+								<xsd:documentation>Код ведомственного статуса</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="techCode" type="tns:string-20">
+							<xsd:annotation>
+								<xsd:documentation>Код статуса ЕПГУ</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+
+
+
+			</xsd:schema>
